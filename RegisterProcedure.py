@@ -12,7 +12,12 @@ def com_timeserver_now():
     return datetime.datetime.now()
 
 
-def compute_probability_click():
+def computer_ctr():
+    # TODO: Implement Logic
+    return 100
+
+
+def compute_cpm():
     # TODO: Implement Logic
     return 100
 
@@ -20,7 +25,8 @@ def compute_probability_click():
 class RegisterProcedure(ApplicationSession):
     def onJoin(self, details):
         self.register(com_timeserver_now, 'com.timeserver.now')
-        self.register(compute_probability_click, 'compute.probability.click')
+        self.register(computer_ctr, 'compute.ctr')
+        self.register(compute_cpm, 'compute.cpm')
 
 
 runner = ApplicationRunner(url=CROSSBAR_URL, realm=CROSSBAR_REALM)
