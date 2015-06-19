@@ -8,25 +8,25 @@ CROSSBAR_URL = u"ws://localhost:8080/ws"
 
 
 # RPC
-def com_timeserver_now():
+def timeserverNow():
     return datetime.datetime.now()
 
 
-def computer_ctr():
+def computeCtrPredictionModel(adImpressions):
     # TODO: Implement Logic
     return 100
 
 
-def compute_cpm():
+def computeCpm(searchPhrases, qualifyingAds, currentTime):
     # TODO: Implement Logic
     return 100
 
 
 class RegisterProcedure(ApplicationSession):
     def onJoin(self, details):
-        self.register(com_timeserver_now, 'com.timeserver.now')
-        self.register(computer_ctr, 'compute.ctr')
-        self.register(compute_cpm, 'compute.cpm')
+        self.register(timeserverNow, 'com.timeserver.now')
+        self.register(computeCtrPredictionModel, 'compute.ctr')
+        self.register(computeCpm, 'compute.cpm')
 
 
 runner = ApplicationRunner(url=CROSSBAR_URL, realm=CROSSBAR_REALM)
