@@ -3,7 +3,7 @@ import datetime
 from src.schemas.AdImpressionSchema import IMPRESSION_ID
 
 __author__ = 'tusharmathur'
-currentTime = 'Sat Jun 20 2015 19:45:57 GMT+0530 (IST)'
+currentTime = '2015-06-20T19:25:47.487Z'
 MOCK_AD_IMPRESSION = json.dumps([
     {
         IMPRESSION_ID: '100',
