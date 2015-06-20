@@ -3,7 +3,7 @@ import json
 
 import pandas
 
-from src.Preprocessor import groupByAdId, getCtrPredictionModel, convertJavascriptTimestampToDatetime
+from src.Preprocessor import groupByAdId, getCtrPredictionModel, convertJavascriptTimestampToDatetime, getSectionOfDay
 from src.schemas.AdImpressionSchema import AdImpressionSchema, IMPRESSION_ID
 from mock.MockAdImpressions import MOCK_AD_IMPRESSION
 
@@ -24,3 +24,10 @@ def TestConvertJavascriptTimestampToDatetime():
     a = convertJavascriptTimestampToDatetime('2015-06-20T19:25:47.487Z')
     b = datetime(2015, 6, 20, 19, 25, 47, 487000)
     assert a == b
+
+
+def TestGetSectionOfDay():
+    assert getSectionOfDay(datetime(2015, 6, 20, 19, 25, 47, 487000)) == 4
+    assert getSectionOfDay(datetime(2015, 6, 20)) == 1
+    assert getSectionOfDay(datetime(2015, 6, 20, 0, 30)) == 1
+    assert getSectionOfDay(datetime(2015, 6, 20, 23, 30)) == 4
