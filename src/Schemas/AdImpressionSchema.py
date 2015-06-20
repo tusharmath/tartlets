@@ -1,8 +1,11 @@
 __author__ = 'tusharmathur'
-adImpressionSchema = [
-    '_id',
+AD_ID = 'advertisement'
+IMPRESSION_ID = '_id'
+AdImpressionSchema = [
+    IMPRESSION_ID,
     'timestamp',
     'searchContext',
+    AD_ID,
     'adKeywords',
     'adTitle',
     'adSubtitle',
