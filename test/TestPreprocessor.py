@@ -2,9 +2,8 @@ from datetime import datetime
 import json
 
 import pandas
-
-from src.Preprocessor import groupByAdId, getCtrPredictionModel, convertJavascriptTimestampToDatetime, getSectionOfDay
-from src.schemas.AdImpressionSchema import AdImpressionSchema, IMPRESSION_ID
+import src.Preprocessor as base
+import src.schemas.AdImpressionSchema as impressionSchema
 from mock.MockAdImpressions import MOCK_AD_IMPRESSION
 
 
@@ -12,22 +11,25 @@ __author__ = 'tusharmathur'
 
 
 def TestGroupByAdId():
-    df = pandas.DataFrame(json.loads(MOCK_AD_IMPRESSION), columns=AdImpressionSchema)
-    fdByAdID = groupByAdId(df)
-    print(groupByAdId(df)[IMPRESSION_ID].count())
+    df = pandas.DataFrame(json.loads(MOCK_AD_IMPRESSION), columns=impressionSchema.AdImpressionSchema)
+    fdByAdID = base.groupByAdId(df)
     assert len(fdByAdID) == 2
-    assert fdByAdID[IMPRESSION_ID].count()[0] == 2
-    assert fdByAdID[IMPRESSION_ID].count()[1] == 1
+    assert fdByAdID[impressionSchema.IMPRESSION_ID].count()[0] == 2
+    assert fdByAdID[impressionSchema.IMPRESSION_ID].count()[1] == 1
 
 
 def TestConvertJavascriptTimestampToDatetime():
-    a = convertJavascriptTimestampToDatetime('2015-06-20T19:25:47.487Z')
+    a = base.convertJavascriptTimestampToDatetime('2015-06-20T19:25:47.487Z')
     b = datetime(2015, 6, 20, 19, 25, 47, 487000)
     assert a == b
 
 
 def TestGetSectionOfDay():
-    assert getSectionOfDay(datetime(2015, 6, 20, 19, 25, 47, 487000)) == 4
-    assert getSectionOfDay(datetime(2015, 6, 20)) == 1
-    assert getSectionOfDay(datetime(2015, 6, 20, 0, 30)) == 1
-    assert getSectionOfDay(datetime(2015, 6, 20, 23, 30)) == 4
+    assert base.getSectionOfDay(datetime(2015, 6, 20, 19, 25, 47, 487000)) == 4
+    assert base.getSectionOfDay(datetime(2015, 6, 20)) == 1
+    assert base.getSectionOfDay(datetime(2015, 6, 20, 0, 30)) == 1
+    assert base.getSectionOfDay(datetime(2015, 6, 20, 23, 30)) == 4
+
+
+    # def TestTemp():
+    # assert getCtrPredictionModel(MOCK_AD_IMPRESSION) == 1
