@@ -1,9 +1,11 @@
 __author__ = 'tusharmathur'
 AD_ID = 'advertisement'
 IMPRESSION_ID = '_id'
+IS_CLICKED = 'isClicked'
+TIMESTAMP = 'timestamp'
 AdImpressionSchema = [
     IMPRESSION_ID,
-    'timestamp',
+    TIMESTAMP,
     'searchContext',
     AD_ID,
     'adKeywords',
@@ -11,5 +13,5 @@ AdImpressionSchema = [
     'adSubtitle',
     'adText',
     'adUrl',
-    'isClicked'
+    IS_CLICKED
 ]
