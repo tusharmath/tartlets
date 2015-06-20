@@ -1,11 +1,14 @@
 import json
-from xmlrpc.client import DateTime
+import datetime
+from src.schemas.AdImpressionSchema import IMPRESSION_ID
 
 __author__ = 'tusharmathur'
+currentTime = 'Sat Jun 20 2015 19:45:57 GMT+0530 (IST)'
 MOCK_AD_IMPRESSION = json.dumps([
     {
-        '_id': '100',
-        'timestamp': DateTime('01-01-01'),
+        IMPRESSION_ID: '100',
+        'advertisement': '1000',
+        'timestamp': currentTime,
         'searchContext': ['a', 'b', 'c'],
         'adKeywords': ['a', 'b', 'c'],
         'adTitle': 'qwerty',
@@ -15,8 +18,9 @@ MOCK_AD_IMPRESSION = json.dumps([
         'isClicked': False
     },
     {
-        '_id': '100',
-        'timestamp': DateTime('01-01-01'),
+        IMPRESSION_ID: '101',
+        'advertisement': '1000',
+        'timestamp': currentTime,
         'searchContext': ['a', 'b', 'c'],
         'adKeywords': ['a', 'b', 'c'],
         'adTitle': 'qwerty',
@@ -26,8 +30,9 @@ MOCK_AD_IMPRESSION = json.dumps([
         'isClicked': False
     },
     {
-        '_id': '101',
-        'timestamp': DateTime('01-01-01'),
+        IMPRESSION_ID: '102',
+        'advertisement': '1001',
+        'timestamp': currentTime,
         'searchContext': ['a', 'b', 'c'],
         'adKeywords': ['a', 'b', 'c'],
         'adTitle': 'qwerty',
