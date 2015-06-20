@@ -69,6 +69,7 @@ pip-selfcheck.json
 [Ii]nclude
 [Ll]ib
 [Ss]cripts
+[Mm]an
 pyvenv.cfg
 pip-selfcheck.json
 
