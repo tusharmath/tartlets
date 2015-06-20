@@ -2,14 +2,14 @@ from datetime import datetime
 import json
 import math
 import pandas as pd
+import pickle
+import sklearn
 import src.schemas.AdImpressionSchema as impressionSchema
 
 __author__ = 'tusharmathur'
 
 DAY_SECTION_KEY = 'daySection'
-FEATURE_LIST = (impressionSchema.TIMESTAMP,
-                impressionSchema.AD_ID,
-                impressionSchema.AD_KEYWORDS,
+FEATURE_LIST = (impressionSchema.AD_KEYWORDS,
                 impressionSchema.SEARCH_CONTEXT,
                 impressionSchema.AD_SUBTITLE,
                 impressionSchema.AD_TEXT,
@@ -38,11 +38,18 @@ def computeDaySection(adImpressionsDF):
         .map(getSectionOfDay)
 
 
-    # def getCtrPredictionModel(_adImpressionsJSON):
-    # adImpressionsDF = convertToDataFrame(_adImpressionsJSON)
-    # adImpressionsDF[DAY_SECTION_KEY] = computeDaySection(adImpressionsDF)
-    #     X = adImpressionsDF[FEATURE_LIST]
-    #     Y = adImpressionsDF[schema.IS_CLICKED]
-    #     dummyCodedAdID = pd.get_dummies(schema.AD_ID, prefix='ad-id-')
-    #     print(adImpressionsDF)
-    #     return 10
+def getCtrPredictionModel(_adImpressionsJSON):
+    model = sklearn.linear_model.LogisticRegression()
+
+    adImpressionsDF = convertToDataFrame(_adImpressionsJSON)
+    adImpressionsDF[DAY_SECTION_KEY] = computeDaySection(adImpressionsDF)
+
+    X = adImpressionsDF[FEATURE_LIST]
+    Y = adImpressionsDF[impressionSchema.IS_CLICKED]
+
+    dummyCodedAdID = pd.get_dummies(impressionSchema.AD_ID, prefix='ad-id-')
+    dummyCodedDaySection = pd.get_dummies(DAY_SECTION_KEY, prefix='day-section-')
+    X =X.join(dummyCodedAdID)
+    X= X.join(dummyCodedDaySection)
+    model.fit(X, Y)
+    return pickle.dumps(model)

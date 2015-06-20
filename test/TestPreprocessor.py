@@ -31,5 +31,5 @@ def TestGetSectionOfDay():
     assert base.getSectionOfDay(datetime(2015, 6, 20, 23, 30)) == 4
 
 
-    # def TestTemp():
-    # assert getCtrPredictionModel(MOCK_AD_IMPRESSION) == 1
+def TestTemp():
+    assert base.computeDaySection()
