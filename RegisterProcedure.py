@@ -14,6 +14,14 @@ def timeserverNow():
 
 def computeCtrPredictionModel(adImpressions):
     # TODO: Implement Logic
+    """
+    Features:
+    1. Timestamp: Hashed with 8 categorical values
+    2. Cosine Similarity: Search Phrases & Ad Target Phrases
+    3. Search Phrase: Hashed with n categorical values
+    4. Ad._id
+    """
+
     return 100
 
 
