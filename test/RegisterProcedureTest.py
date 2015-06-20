@@ -1,3 +1,6 @@
+import json
+
+
 def multiply(a, b):
     return a * b
 
@@ -9,3 +12,6 @@ def testNumbers_3_4():
 def testStrings_a_3():
     assert multiply('a', 3) == 'aaa'
 
+
+def testJsonLoads():
+    assert json.loads('{"val": true}')["val"]
