@@ -19,7 +19,7 @@ def computeCtrPredictionModel(adImpressions):
     1. Timestamp: Hashed with 8 categorical values
     2. Cosine Similarity: Search Phrases & Ad Target Phrases
     3. Search Phrase: Hashed with n categorical values
-    4. Ad._id
+    4. Ad ID: Hashed with n categorical values, where n = count(ad) where ad.impressions > threshold
     """
 
     return 100
