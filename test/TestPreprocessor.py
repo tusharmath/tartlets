@@ -1,4 +1,5 @@
 from datetime import datetime
+import functools
 import json
 
 import pandas
@@ -10,8 +11,12 @@ from mock.MockAdImpressions import MOCK_AD_IMPRESSION
 __author__ = 'tusharmathur'
 
 
+def getMockImpressionsAsDF():
+    return pandas.DataFrame(json.loads(MOCK_AD_IMPRESSION), columns=impressionSchema.AdImpressionSchema)
+
+
 def TestGroupByAdId():
-    df = pandas.DataFrame(json.loads(MOCK_AD_IMPRESSION), columns=impressionSchema.AdImpressionSchema)
+    df = getMockImpressionsAsDF()
     fdByAdID = base.groupByAdId(df)
     assert len(fdByAdID) == 2
     assert fdByAdID[impressionSchema.IMPRESSION_ID].count()[0] == 2
@@ -31,5 +36,16 @@ def TestGetSectionOfDay():
     assert base.getSectionOfDay(datetime(2015, 6, 20, 23, 30)) == 4
 
 
-def TestTemp():
-    assert base.computeDaySection()
+def TestStringRelevance():
+    context = ['pretty', 'shoes']
+    keywordList1 = ['shoes', 'shoes', 'shoes']
+    keywordList2 = ['shoes', 'pretty', 'red']
+    keywordList3 = ['apples', 'poop', 'shoes']
+    keywordList4 = ['shoes', 'poop', 'preity']
+
+    n = functools.partial(base.strCosineSimilarityScore, context)
+    assert n(keywordList1) < n(keywordList2)
+    assert n(keywordList1) > n(keywordList3)
+    assert n(keywordList3) == n(keywordList4)
+
+
