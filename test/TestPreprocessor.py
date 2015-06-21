@@ -1,51 +1,34 @@
-from datetime import datetime
-import functools
 import json
 
 import pandas
+import src.Utility as u
+
 import src.Preprocessor as base
 import src.schemas.AdImpressionSchema as impressionSchema
+
 from mock.MockAdImpressions import MOCK_AD_IMPRESSION
 
 
 __author__ = 'tusharmathur'
 
 
-def getMockImpressionsAsDF():
-    return pandas.DataFrame(json.loads(MOCK_AD_IMPRESSION), columns=impressionSchema.AdImpressionSchema)
-
-
 def TestGroupByAdId():
-    df = getMockImpressionsAsDF()
+    df = u.convertJsonToDataFrame(MOCK_AD_IMPRESSION, impressionSchema.AdImpressionSchema)
     fdByAdID = base.groupByAdId(df)
     assert len(fdByAdID) == 2
     assert fdByAdID[impressionSchema.IMPRESSION_ID].count()[0] == 2
     assert fdByAdID[impressionSchema.IMPRESSION_ID].count()[1] == 1
 
 
-def TestConvertJavascriptTimestampToDatetime():
-    a = base.convertJavascriptTimestampToDatetime('2015-06-20T19:25:47.487Z')
-    b = datetime(2015, 6, 20, 19, 25, 47, 487000)
-    assert a == b
+def TestGetCtrPredictionModel():
+    x = [
+        -0.27621892378767104,
+        -0.5115574973374354,
+        0.3609452685495564,
+        0.3609452685495564,
+        -0.2630502211274582,
+        -0.2485072762099772
+    ]
 
-
-def TestGetSectionOfDay():
-    assert base.getSectionOfDay(datetime(2015, 6, 20, 19, 25, 47, 487000)) == 4
-    assert base.getSectionOfDay(datetime(2015, 6, 20)) == 1
-    assert base.getSectionOfDay(datetime(2015, 6, 20, 0, 30)) == 1
-    assert base.getSectionOfDay(datetime(2015, 6, 20, 23, 30)) == 4
-
-
-def TestStringRelevance():
-    context = ['pretty', 'shoes']
-    keywordList1 = ['shoes', 'shoes', 'shoes']
-    keywordList2 = ['shoes', 'pretty', 'red']
-    keywordList3 = ['apples', 'poop', 'shoes']
-    keywordList4 = ['shoes', 'poop', 'preity']
-
-    n = functools.partial(base.strCosineSimilarityScore, context)
-    assert n(keywordList1) < n(keywordList2)
-    assert n(keywordList1) > n(keywordList3)
-    assert n(keywordList3) == n(keywordList4)
-
-
+    y = base.getCtrPredictionModel(MOCK_AD_IMPRESSION).coef_[0].tolist()
+    assert x == y

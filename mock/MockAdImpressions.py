@@ -9,7 +9,7 @@ MOCK_AD_IMPRESSION = json.dumps([
         impr.IMPRESSION_ID: '100',
         impr.AD_ID: '1000',
         impr.TIMESTAMP: '2015-06-20T19:25:47.487Z',
-        impr.SEARCH_CONTEXT: ['a', 'b', 'c'],
+        impr.SEARCH_CONTEXT: ['a', 'banana', 'cherry'],
         impr.AD_KEYWORDS: ['apple', 'banana', 'cherry'],
         impr.AD_TITLE: 'qwerty',
         impr.AD_SUBTITLE: 'opps',
@@ -21,7 +21,7 @@ MOCK_AD_IMPRESSION = json.dumps([
         impr.IMPRESSION_ID: '101',
         impr.AD_ID: '1000',
         impr.TIMESTAMP: '2015-06-20T10:25:47.487Z',
-        impr.SEARCH_CONTEXT: ['d', 'e', 'f'],
+        impr.SEARCH_CONTEXT: ['d', 'equator', 'f'],
         impr.AD_KEYWORDS: ['dog food', 'equator', 'fantastic'],
         impr.AD_TITLE: 'qwerty',
         impr.AD_SUBTITLE: 'opps',
@@ -39,6 +39,6 @@ MOCK_AD_IMPRESSION = json.dumps([
         impr.AD_SUBTITLE: 'opps',
         impr.AD_TEXT: 'wendy had a little lamb',
         impr.AD_URL: 'http://www.practo.com/bangalore/idiots',
-        impr.IS_CLICKED: False
+        impr.IS_CLICKED: True
     }
 ])
