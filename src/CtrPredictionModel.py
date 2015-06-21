@@ -14,11 +14,9 @@ class CtrPredictionModel(object):
             self.CONTEXT_RELEVANCE
         ]
 
-
     @staticmethod
     def groupByAdId(adImpressionsDF):  # TODO: Make it more generic
         return adImpressionsDF.groupby(impressionSchema.AD_ID)
-
 
     @staticmethod
     def computeDaySectionFeature(adImpressionsDF):
@@ -26,14 +24,12 @@ class CtrPredictionModel(object):
             .map(u.convertIsoTimestampToDatetime) \
             .map(u.getSectionOfDay)
 
-
     @staticmethod
     def computeContextRelevanceFeature(adImpressionsDF):
         context = impressionSchema.SEARCH_CONTEXT
         keywords = impressionSchema.AD_KEYWORDS
         score = u.strCosineSimilarityScore
         return adImpressionsDF.apply(lambda x: score(x[context], x[keywords]), axis=1)
-
 
     def getModel(self, _adImpressionsJSON):
         model = linear_model.LogisticRegression()
@@ -48,3 +44,4 @@ class CtrPredictionModel(object):
             .join(pd.get_dummies(adImpressionsDF[self.DAY_SECTION_KEY], prefix=self.DAY_SECTION_KEY))
         model.fit(X, Y)
         return model
+    
