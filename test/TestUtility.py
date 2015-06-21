@@ -5,7 +5,7 @@ import src.Utility as u
 
 
 def TestConvertJavascriptTimestampToDatetime():
-    a = u.convertJavascriptTimestampToDatetime('2015-06-20T19:25:47.487Z')
+    a = u.convertIsoTimestampToDatetime('2015-06-20T19:25:47.487Z')
     b = datetime(2015, 6, 20, 19, 25, 47, 487000)
     assert a == b
 

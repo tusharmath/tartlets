@@ -20,7 +20,7 @@ def convertJsonToDataFrame(jsonStr, columns):
     return pd.DataFrame(json.loads(jsonStr), columns=columns)
 
 
-def convertJavascriptTimestampToDatetime(timestampRaw):
+def convertIsoTimestampToDatetime(timestampRaw):
     return datetime.strptime(timestampRaw, '%Y-%m-%dT%H:%M:%S.%fZ')
 
 

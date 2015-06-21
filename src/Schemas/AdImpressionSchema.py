@@ -23,3 +23,4 @@ AdImpressionSchema = [
     AD_URL,
     IS_CLICKED
 ]
+
