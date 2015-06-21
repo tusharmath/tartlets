@@ -1,43 +1,44 @@
 import json
 import datetime
-import src.schemas.AdImpressionSchema as impressionSchema
+import src.schemas.AdImpressionSchema as impr
 
 __author__ = 'tusharmathur'
+
 MOCK_AD_IMPRESSION = json.dumps([
     {
-        (impressionSchema.IMPRESSION_ID): '100',
-        'advertisement': '1000',
-        'timestamp': '2015-06-20T19:25:47.487Z',
-        'searchContext': ['a', 'b', 'c'],
-        'adKeywords': ['a', 'b', 'c'],
-        'adTitle': 'qwerty',
-        'adSubtitle': 'opps',
-        'adText': 'wendy had a little lamb',
-        'adUrl': 'http://www.practo.com/bangalore/idiots',
-        'isClicked': False
+        impr.IMPRESSION_ID: '100',
+        impr.AD_ID: '1000',
+        impr.TIMESTAMP: '2015-06-20T19:25:47.487Z',
+        impr.SEARCH_CONTEXT: ['a', 'b', 'c'],
+        impr.AD_KEYWORDS: ['a', 'b', 'c'],
+        impr.AD_TITLE: 'qwerty',
+        impr.AD_SUBTITLE: 'opps',
+        impr.AD_TEXT: 'wendy had a little lamb',
+        impr.AD_URL: 'http://www.practo.com/bangalore/idiots',
+        impr.IS_CLICKED: False
     },
     {
-        (impressionSchema.IMPRESSION_ID): '101',
-        'advertisement': '1000',
-        'timestamp': '2015-06-20T10:25:47.487Z',
-        'searchContext': ['a', 'b', 'c'],
-        'adKeywords': ['a', 'b', 'c'],
-        'adTitle': 'qwerty',
-        'adSubtitle': 'opps',
-        'adText': 'wendy had a little lamb',
-        'adUrl': 'http://www.practo.com/bangalore/idiots',
-        'isClicked': False
+        impr.IMPRESSION_ID: '101',
+        impr.AD_ID: '1000',
+        impr.TIMESTAMP: '2015-06-20T10:25:47.487Z',
+        impr.SEARCH_CONTEXT: ['a', 'b', 'c'],
+        impr.AD_KEYWORDS: ['a', 'b', 'c'],
+        impr.AD_TITLE: 'qwerty',
+        impr.AD_SUBTITLE: 'opps',
+        impr.AD_TEXT: 'wendy had a little lamb',
+        impr.AD_URL: 'http://www.practo.com/bangalore/idiots',
+        impr.IS_CLICKED: False
     },
     {
-        (impressionSchema.IMPRESSION_ID): '102',
-        'advertisement': '1001',
-        'timestamp': '2015-06-20T01:25:47.487Z',
-        'searchContext': ['a', 'b', 'c'],
-        'adKeywords': ['a', 'b', 'c'],
-        'adTitle': 'qwerty',
-        'adSubtitle': 'opps',
-        'adText': 'wendy had a little lamb',
-        'adUrl': 'http://www.practo.com/bangalore/idiots',
-        'isClicked': False
+        impr.IMPRESSION_ID: '102',
+        impr.AD_ID: '1001',
+        impr.TIMESTAMP: '2015-06-20T01:25:47.487Z',
+        impr.SEARCH_CONTEXT: ['a', 'b', 'c'],
+        impr.AD_KEYWORDS: ['a', 'b', 'c'],
+        impr.AD_TITLE: 'qwerty',
+        impr.AD_SUBTITLE: 'opps',
+        impr.AD_TEXT: 'wendy had a little lamb',
+        impr.AD_URL: 'http://www.practo.com/bangalore/idiots',
+        impr.IS_CLICKED: False
     }
 ])
