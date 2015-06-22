@@ -1,3 +1,4 @@
+from mock.SerializedModel import SERIALIZED_MODEL_COEF
 from src.CtrPredictionModel import CtrPredictionModel
 import src.Utility as u
 import src.schemas.AdImpressionSchema as impressionSchema
@@ -17,14 +18,4 @@ def TestGroupByAdId():
 
 def TestGetCtrPredictionModel():
     item = CtrPredictionModel()
-    x = [
-        -0.27621892378767104,
-        -0.5115574973374354,
-        0.3609452685495564,
-        0.3609452685495564,
-        -0.2630502211274582,
-        -0.2485072762099772
-    ]
-
-    y = item.getModel(MOCK_AD_IMPRESSION).coef_[0].tolist()
-    assert x == y
+    assert SERIALIZED_MODEL_COEF == item.getModel(MOCK_AD_IMPRESSION).coef_[0].tolist()

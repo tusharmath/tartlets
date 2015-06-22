@@ -16,8 +16,12 @@ def join(_list, _str=' '):
     return _str.join(_list)
 
 
+def convertToDataFrame(data, columns):
+    return pd.DataFrame(data, columns=columns)
+
+
 def convertJsonToDataFrame(jsonStr, columns):
-    return pd.DataFrame(json.loads(jsonStr), columns=columns)
+    return convertToDataFrame(json.loads(jsonStr), columns=columns)
 
 
 def convertIsoTimestampToDatetime(timestampRaw):
