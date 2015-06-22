@@ -24,6 +24,10 @@ def convertJsonToDataFrame(jsonStr, columns):
     return convertToDataFrame(json.loads(jsonStr), columns=columns)
 
 
+def mapIsoTimestampToDateTime(timestampList):
+    return timestampList.map(convertIsoTimestampToDatetime).map(getSectionOfDay)
+
+
 def convertIsoTimestampToDatetime(timestampRaw):
     return datetime.strptime(timestampRaw, '%Y-%m-%dT%H:%M:%S.%fZ')
 
