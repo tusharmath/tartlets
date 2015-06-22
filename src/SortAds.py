@@ -6,9 +6,8 @@ from src.schemas.AdvertisementSchema import AdvertisementSchema
 
 
 class SortAds:
-    def __init__(self):
-        self._adList = {}
-        self._model = {}
+    _model = None
+    _adList = None
 
     @property
     def model(self):
@@ -18,8 +17,13 @@ class SortAds:
     def adList(self):
         return self._adList
 
-    def warmUp(self, advertisementsRaw, modelRaw):
-        self._adList = u.convertToDataFrame(json.loads(advertisementsRaw), columns=AdvertisementSchema)
+    @adList.setter
+    def adList(self, advertisementRaw):
+        self._adList = u.convertToDataFrame(json.loads(advertisementRaw), columns=AdvertisementSchema)
+
+
+    @model.setter
+    def model(self, modelRaw):
         self._model = pickle.loads(modelRaw)
 
 
