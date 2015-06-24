@@ -37,16 +37,16 @@ class CtrPredictionModel(object):
 
     def train(self, _adImpressionsJSON):
         model = linear_model.LogisticRegression()
-        adImpressionsDF = u.convertJsonToDataFrame(_adImpressionsJSON, impressionSchema.AdImpressionSchema)
+        impressionsDF = u.convertJsonToDataFrame(_adImpressionsJSON, impressionSchema.AdImpressionSchema)
 
-        adImpressionsDF[self.CONTEXT_RELEVANCE] = self.computeContextRelevanceFeature(adImpressionsDF)
-        adImpressionsDF[self.DAY_SECTION_KEY] = self.computeDaySectionFeature(adImpressionsDF)
+        impressionsDF[self.CONTEXT_RELEVANCE] = self.computeContextRelevanceFeature(impressionsDF)
+        impressionsDF[self.DAY_SECTION_KEY] = self.computeDaySectionFeature(impressionsDF)
 
-        Y = adImpressionsDF[impressionSchema.IS_CLICKED]
-        X = adImpressionsDF[self.FEATURE_LIST] \
-            .join(pd.get_dummies(adImpressionsDF[impressionSchema.AD_ID], prefix=impressionSchema.AD_ID)) \
-            .join(pd.get_dummies(adImpressionsDF[self.DAY_SECTION_KEY], prefix=self.DAY_SECTION_KEY))
-        model.fit(X, Y)
+        target = impressionsDF[impressionSchema.IS_CLICKED]
+        features = impressionsDF[self.FEATURE_LIST] \
+            .join(pd.get_dummies(impressionsDF[impressionSchema.AD_ID], prefix=impressionSchema.AD_ID)) \
+            .join(pd.get_dummies(impressionsDF[self.DAY_SECTION_KEY], prefix=self.DAY_SECTION_KEY))
+        model.fit(features, target)
         self.model = model
         return model
     
