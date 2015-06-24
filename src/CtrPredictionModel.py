@@ -11,6 +11,7 @@ __author__ = 'tusharmathur'
 
 class CtrPredictionModel(object):
     def __init__(self):
+        self.model = None
         self.DAY_SECTION_KEY = 'daySection'
         self.CONTEXT_RELEVANCE = 'contextRelevance'
         self.FEATURE_LIST = [
@@ -46,5 +47,6 @@ class CtrPredictionModel(object):
             .join(pd.get_dummies(adImpressionsDF[impressionSchema.AD_ID], prefix=impressionSchema.AD_ID)) \
             .join(pd.get_dummies(adImpressionsDF[self.DAY_SECTION_KEY], prefix=self.DAY_SECTION_KEY))
         model.fit(X, Y)
+        self.model = model
         return model
     
