@@ -42,8 +42,8 @@ class CtrPredictionModel(object):
         features = self.createAdImpressionFeatures(_adImpressionsJSON)
         target = impressionsDF[impressionSchema.IS_CLICKED]
         model.fit(features, target)
+
         self.model = model
-        return model
 
     def createAdImpressionFeatures(self, _adImpressionsJSON):
         impressionsDF = u.convertJsonToDataFrame(_adImpressionsJSON, impressionSchema.AdImpressionSchema)

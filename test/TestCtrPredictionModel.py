@@ -18,10 +18,9 @@ def TestGroupByAdId():
 
 def TestTrain():
     item = CtrPredictionModel()
-    model = item.train(MOCK_AD_IMPRESSION)
-    assert SERIALIZED_MODEL_COEF == model.coef_[0].tolist()
-    assert item.model == model
-
+    item.train(MOCK_AD_IMPRESSION)
+    assert SERIALIZED_MODEL_COEF == item.model.coef_[0].tolist()
+    
 
 def TestPredict():
     item = CtrPredictionModel()
