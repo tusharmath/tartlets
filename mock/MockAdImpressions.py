@@ -3,6 +3,11 @@ import datetime
 import src.schemas.AdImpressionSchema as impr
 
 __author__ = 'tusharmathur'
+MOCK_CLICK_THROUGH_RATE = [
+    [0.7514943912329435, 0.24850560876705657],
+    [0.7369502408155573, 0.2630497591844427],
+    [0.3609419142315772, 0.6390580857684228]
+]
 
 MOCK_AD_IMPRESSION = json.dumps([
     {

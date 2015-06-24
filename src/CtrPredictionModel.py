@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn import linear_model
 
 import src.Utility as u
+
 import src.schemas.AdImpressionSchema as impressionSchema
 
 
@@ -54,4 +55,6 @@ class CtrPredictionModel(object):
             .join(pd.get_dummies(impressionsDF[impressionSchema.AD_ID], prefix=impressionSchema.AD_ID)) \
             .join(pd.get_dummies(impressionsDF[self.DAY_SECTION_KEY], prefix=self.DAY_SECTION_KEY))
 
-    
+    def predict(self, _adImpressionsJSON):
+        features = self.createAdImpressionFeatures(_adImpressionsJSON)
+        return self.model.predict_proba(features).tolist()
