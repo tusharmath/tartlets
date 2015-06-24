@@ -34,7 +34,7 @@ class CtrPredictionModel(object):
         score = u.strCosineSimilarityScore
         return adImpressionsDF.apply(lambda x: score(x[context], x[keywords]), axis=1)
 
-    def getModel(self, _adImpressionsJSON):
+    def train(self, _adImpressionsJSON):
         model = linear_model.LogisticRegression()
         adImpressionsDF = u.convertJsonToDataFrame(_adImpressionsJSON, impressionSchema.AdImpressionSchema)
 
